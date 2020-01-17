@@ -26,15 +26,15 @@ class CountryInformationContainer extends Component {
      });
    }
 
-   getBasicCountryInformation = (country = null) => {
-      getCountryData(country || this.state.textInput)
+   getBasicCountryInformation = () => {
+      getCountryData(this.state.textInput)
       .then((res) => {
         if (!res || !res.length) {
           throw new Error();
         }
         this.setState(prevState => {
           return{
-            textInput: country || prevState.textInput,
+            textInput: prevState.textInput,
             searched: {
               ...prevState.searched,
               recentlySearched: Object.assign({},
@@ -63,6 +63,21 @@ class CountryInformationContainer extends Component {
             },
           }
         })
+      })
+    }
+
+    getRecentCountryInfo = (country) => {
+      this.setState(prevState => {
+        return{
+          textInput: prevState.textInput,
+          searched: {
+            ...prevState.searched,
+            result: prevState.searched.recentlySearched[country]
+          },
+          errorMessages:{
+            isCountryNotFound: false
+          },
+        }
       })
     }
 
@@ -95,7 +110,7 @@ class CountryInformationContainer extends Component {
         {Object.values(this.state.searched.recentlySearched).length > ZERO && (
           <RecentlySearchedCountriesComponent
             recentlySearched={this.state.searched.recentlySearched}
-            getBasicCountryInformation={this.getBasicCountryInformation} />
+            getBasicCountryInformation={this.getRecentCountryInfo} />
         )}
 
     </Fragment>);

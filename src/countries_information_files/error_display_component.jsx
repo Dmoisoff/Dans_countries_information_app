@@ -5,7 +5,11 @@ const ErrorDisplayComponent = props => {
   return(
     <Fragment>
       {props.isCountryNotFound &&
-        <strong>
+        <strong
+          style={{display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection:'column'}}>
           <p>Country not found</p>
         </strong>
       }
