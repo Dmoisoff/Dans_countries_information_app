@@ -11,13 +11,11 @@ describe('ErrorDisplayComponent', () => {
     const clickFn = jest.fn();
     const wrapper = shallow(<RecentlySearchedCountriesComponent
       recentlySearched={defaultProps}
-    getBasicCountryInformation={clickFn} />);
+    getRecentCountryInfo={clickFn} />);
 
-    wrapper.find('li').first().simulate('click')
+    wrapper.find('li').first().simulate('click');
 
     expect(clickFn).toHaveBeenCalled();
-
-
   });
 
 });

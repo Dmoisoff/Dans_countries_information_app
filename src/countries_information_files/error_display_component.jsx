@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 
 const ErrorDisplayComponent = props => {
@@ -17,5 +18,9 @@ const ErrorDisplayComponent = props => {
   );
 
 };
+
+ErrorDisplayComponent.propsTypes = {
+  isCountryNotFound: PropTypes.bool.isRequired
+}
 
 export default ErrorDisplayComponent

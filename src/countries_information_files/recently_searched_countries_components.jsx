@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 const RecentlySearchedCountriesComponent = props => {
 
@@ -14,7 +15,7 @@ const RecentlySearchedCountriesComponent = props => {
             justifyContent: 'center',
             alignItems: 'center'}}
            key={country.name}
-           onClick={() => props.getBasicCountryInformation(country.name)}
+           onClick={() => props.getRecentCountryInfo(country.name)}
            >
           <p>{country.name}</p>
           <img alt={`${country.name}'s flag is not available'`} style={{width:'50px'}}src={`${country.flag}`}/>
@@ -31,10 +32,29 @@ const RecentlySearchedCountriesComponent = props => {
         alignItems: 'center',
         flexDirection:'column'
       }}>
-      <h4>Recently Searched</h4>
+      <h4 style={{marginBottom: '5px'}}>
+        Recently Searched
+      </h4>
+      <p style={{ marginTop: '0'}}>
+        Click on the list item below to see the data again
+      </p>
       {displayRecentlySearchedCountries(props.recentlySearched)}
     </ul>
   );
 };
+
+RecentlySearchedCountriesComponent.propsTypes = {
+  recentlySearched: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    flag: PropTypes.string,
+  }),
+  getRecentCountryInfo: PropTypes.func.isRequired,
+}
+
+RecentlySearchedCountriesComponent.defaultProps = {
+  recentlySearched: {
+    flag: '',
+  },
+}
 
 export default RecentlySearchedCountriesComponent;

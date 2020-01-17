@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {getCountryData} from './countries_information_utils_file'
-import ErrorDisplayComponent from './error_display_component'
-import RecentlySearchedCountriesComponent from './recently_searched_countries_components'
-import DisplayInformationComponent from './display_information_component'
-import {ZERO} from './countries_constaints'
+import {getCountryData} from './countries_information_utils_file';
+import ErrorDisplayComponent from './error_display_component';
+import RecentlySearchedCountriesComponent from './recently_searched_countries_components';
+import DisplayInformationComponent from './display_information_component';
+import {ZERO} from './countries_constaints';
 
 class CountryInformationContainer extends Component {
   state = {
@@ -98,8 +98,9 @@ class CountryInformationContainer extends Component {
           placeholder={'Enter A Country'}
           />
         <button
-          onClick={() => this.getBasicCountryInformation() }>
-          Search For Country
+          onClick={() => this.getBasicCountryInformation()}
+          style={{marginLeft: '10px'}}>
+          CLICK to Search For A Country
         </button>
         <ErrorDisplayComponent
           isCountryNotFound={this.state.errorMessages.isCountryNotFound}/>
@@ -110,7 +111,7 @@ class CountryInformationContainer extends Component {
         {Object.values(this.state.searched.recentlySearched).length > ZERO && (
           <RecentlySearchedCountriesComponent
             recentlySearched={this.state.searched.recentlySearched}
-            getBasicCountryInformation={this.getRecentCountryInfo} />
+            getRecentCountryInfo={this.getRecentCountryInfo} />
         )}
 
     </Fragment>);

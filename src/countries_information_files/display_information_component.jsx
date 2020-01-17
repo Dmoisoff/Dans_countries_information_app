@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import {getLocalTimes} from './time_zone_helper'
-import {ZERO} from './countries_constaints'
+import {getLocalTimes} from './time_zone_helper';
+import {ZERO} from './countries_constaints';
+import PropTypes from 'prop-types';
 
 
 const DisplayInformationComponent = props => {
@@ -10,7 +11,10 @@ const DisplayInformationComponent = props => {
   const displayTimezoneData = (timezones) => {
     return getLocalTimes(timezones).map(localTime => {
       return(
-        <li key={localTime.localTZ}> Timezone: {localTime.localTZ}, Local Time: {localTime.localTime} </li>
+        <li
+          key={localTime.localTZ}>
+          Timezone: {localTime.localTZ}, Local Time: {localTime.localTime}
+        </li>
       )
     })
   }
@@ -27,13 +31,29 @@ const DisplayInformationComponent = props => {
         <Fragment>
           {displayTimezoneData(country.timezones)}
         </Fragment>
-
-       : <p>{informationNotAvailable}</p>}
+        : <p>{informationNotAvailable}</p>}
     </Fragment>
-
-
   );
 
 };
+
+DisplayInformationComponent.propTypes = {
+  result: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    capital: PropTypes.string,
+    population: PropTypes.number,
+    flag: PropTypes.string,
+    timezones: PropTypes.array,
+  })
+}
+
+DisplayInformationComponent.defaultProps = {
+  recentlySearched: PropTypes.shape({
+    capital: '',
+    population: null,
+    flag: '',
+    timezones: [],
+  })
+}
 
 export default DisplayInformationComponent
