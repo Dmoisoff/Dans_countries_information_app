@@ -7,9 +7,19 @@ describe('ErrorDisplayComponent', () => {
     const wrap = shallow(<ErrorDisplayComponent isCountryNotFound />);
 
     expect(
-  wrap.containsMatchingElement(
-    <p>Country not found</p>
-  )
-).toBeTruthy()
+      wrap.containsMatchingElement(
+        <p>Country not found</p>
+      )).toBeTruthy();
+      wrap.unmount();
+  });
+
+  it('should display error message if isCountryNotFound is false', () => {
+    const wrap = shallow(<ErrorDisplayComponent />);
+
+    expect(
+      wrap.containsMatchingElement(
+        <p>Country not found</p>
+      )).toBeFalsy();
+      wrap.unmount();
   });
 });
