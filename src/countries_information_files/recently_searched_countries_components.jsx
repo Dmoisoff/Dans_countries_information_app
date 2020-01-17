@@ -20,7 +20,7 @@ flexDirection:'column'}}>
            key={country.name}
            onClick={() => props.getBasicCountryInformation(country.name)}
            >
-          <span>{country.name}</span>
+          <p>{country.name}</p>
           <img alt={`${country.name}'s flag is not available'`} style={{width:'50px'}}src={`${country.flag}`}/>
         </li>
       )}
