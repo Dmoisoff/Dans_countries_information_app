@@ -1,4 +1,4 @@
-export let getLocalTimes = (timezones)  => {
+export const getLocalTimes = (timezones)  => {
   const currentTime = new Date();
   const utcHours = currentTime.getUTCHours(),
   utcMins = currentTime.getUTCMinutes();
@@ -12,7 +12,7 @@ export let getLocalTimes = (timezones)  => {
 
 
 
-let formatTimezones = (timezone) => {
+export const formatTimezones = (timezone) => {
   const plusSign = '+'
   return {
     utcHourDiff: Number(timezone.slice(4,6)),
@@ -21,7 +21,7 @@ let formatTimezones = (timezone) => {
   }
 }
 
-let calculateTime = ({utcMins, utcHours, utcHourDiff, utcMinDiff, isAhead}) => {
+export const calculateTime = ({utcMins, utcHours, utcHourDiff, utcMinDiff, isAhead}) => {
   let totalMins = isAhead ? utcMins + utcMinDiff : utcMins - utcMinDiff;
   let totalHours = isAhead ? utcHours + utcHourDiff : utcHours - utcHourDiff;
 
